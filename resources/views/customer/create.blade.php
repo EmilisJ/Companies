@@ -30,6 +30,7 @@
                         </div>
                         <div class="border-bottom">
                             <select name="company_id" id="exampleFormControlSelect1" class="form-control">
+                            {{-- <option value="1">CUSTOMER IS UNEMPLOYED</option> --}}
                                 @foreach ($companies as $company)
                                     <option value="{{$company->id}}">{{$company->name}}</option>
                                 @endforeach

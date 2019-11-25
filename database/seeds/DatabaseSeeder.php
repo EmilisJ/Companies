@@ -18,6 +18,10 @@ class DatabaseSeeder extends Seeder
             'email' => '1@1.com',
             'password' => bcrypt('1'),
         ]);
+        DB::table('companies')->insert([
+            'name' => 'CUSTOMER IS UNEMPLOYD',
+            'address' => '',
+        ]);
         foreach(range(1,20) as $val) {
             DB::table('companies')->insert([
                 'name' => $faker->unique()->company(),
@@ -31,7 +35,7 @@ class DatabaseSeeder extends Seeder
                 'phone' => $faker->phoneNumber(),
                 'email' => $faker->email(),
                 'comment' => $faker->realText(rand(20,50)),
-                'company_id' => rand(1, 19),
+                'company_id' => rand(2, 19),
             ]);
         }
     }

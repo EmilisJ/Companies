@@ -14,10 +14,15 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $companies = Company::all()->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);   
         $customers = Customer::all()->sortBy('surname', SORT_NATURAL|SORT_FLAG_CASE);
-        return view('customer.index', ['customers' => $customers]);
+        if($request->filter){
+            $filtered = $customers->where('company_id', $request->filter); 
+            $customers = $filtered->all();
+        }
+        return view('customer.index', ['customers' => $customers], ['companies' => $companies]);
     }
 
     /**
