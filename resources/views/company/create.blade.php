@@ -10,12 +10,12 @@
                     <form method="POST" action="{{route('company.store')}}">
                         <div class="form-group border-bottom">
                             <label>Name</label>
-                            <input type="text" class="form-control" name="company_name" value="{{old('name')}}">
+                            <input type="text" class="form-control" name="company_name" value="{{old('company_name')}}">
                             <small class="form-text text-muted">Name of company.</small>
                         </div>
                         <div class="form-group border-bottom">
                             <label>Address</label>
-                            <input type="text" class="form-control" name="company_address" value="{{old('address')}}">
+                            <input type="text" class="form-control" name="company_address" value="{{old('company_address')}}">
                             <small class="form-text text-muted">Address of company.</small>
                         </div>
                         @csrf

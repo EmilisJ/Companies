@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use Illuminate\Http\Request;
+use Validator;
 
 class CompanyController extends Controller
 {
@@ -36,6 +37,17 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(),
+        [
+            'company_name' => ['required', 'min:3', 'max:64'],
+            'company_address' => ['required', 'min:3', 'max:64'],
+        ]
+        );
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->route('company.create')->withErrors($validator);
+        }
+
         $company = new Company;
         $company->name = $request->company_name;
         $company->address = $request->company_address;
@@ -74,6 +86,17 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
+        $validator = Validator::make($request->all(),
+        [
+            'company_name' => ['required', 'min:3', 'max:64'],
+            'company_address' => ['required', 'min:3', 'max:64'],
+        ]
+        );
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->route('company.create')->withErrors($validator);
+        }
+
         $company->name = $request->company_name;
         $company->address = $request->company_address;
         $company->save();

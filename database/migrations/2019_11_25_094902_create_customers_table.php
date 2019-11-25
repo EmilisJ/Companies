@@ -19,7 +19,7 @@ class CreateCustomersTable extends Migration
             $table->string('surname',32);
             $table->string('phone',24);
             $table->string('email',32);
-            $table->longText('comment');
+            $table->longText('comment',300)->nullable();
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies');
             $table->timestamps();
